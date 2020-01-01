@@ -1,5 +1,5 @@
 {
-  "name": "egoscueexerciseroutinekeeper",
+  "name": "exercise-tracker",
   "version": "1.0.0",
   "description": "Exercise tracker app",
   "main": "server.js",
