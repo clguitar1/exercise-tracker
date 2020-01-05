@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import './NavbarComponent.css';
 import {
   Collapse,
   Navbar,
@@ -17,8 +18,8 @@ const NavbarComponent = ({ title, icon }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar color='light' light expand='md'>
+    <div className='NavbarComponent'>
+      <Navbar color='primary' dark expand='md'>
         <NavbarBrand href='/'>{title}</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
