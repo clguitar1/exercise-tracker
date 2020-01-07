@@ -52,8 +52,6 @@ const RegisterForm = props => {
     }
   };
 
-  const clearAll = () => {};
-
   return (
     <div className='RegisterForm'>
       <Form onSubmit={onSubmit} className='ExerciseForm p-4'>

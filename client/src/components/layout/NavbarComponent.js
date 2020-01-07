@@ -82,7 +82,7 @@ NavbarComponent.propTypes = {
 };
 
 NavbarComponent.defaultProps = {
-  title: 'Contact Keeper',
+  title: 'Exercise Tracker',
   icon: 'fas fa-id-card-alt'
 };
 

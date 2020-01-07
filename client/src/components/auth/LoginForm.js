@@ -44,8 +44,6 @@ const LoginForm = props => {
     }
   };
 
-  const clearAll = () => {};
-
   return (
     <div className='LoginForm'>
       <Form onSubmit={onSubmit} className='ExerciseForm p-4'>

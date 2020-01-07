@@ -1,13 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import ExerciseContext from '../../context/exercise/exerciseContext';
+import AuthContext from '../../context/auth/authContext';
 import ExerciseItem from './ExerciseItem';
 import Spinner from '../layout/Spinner';
 import { Container, Row } from 'reactstrap';
 
 const Exercises = props => {
   const exerciseContext = useContext(ExerciseContext);
+  const authContext = useContext(AuthContext);
 
-  const { exercises, filtered, getExercises, loading } = exerciseContext;
+  const { exercises, filtered, getExercises } = exerciseContext;
+  const { loading } = authContext;
 
   // get all the exercises and put them in state
   useEffect(() => {

@@ -1,6 +1,5 @@
 import React, { useContext, useRef, useEffect } from 'react';
 import ExerciseContext from '../../context/exercise/exerciseContext';
-import { Form, Input } from 'reactstrap';
 
 const ExerciseFilter = () => {
   const exerciseContext = useContext(ExerciseContext);
