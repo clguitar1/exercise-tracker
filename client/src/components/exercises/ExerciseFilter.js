@@ -28,7 +28,7 @@ const ExerciseFilter = () => {
           className='form-control'
           ref={text}
           type='text'
-          placeholder='Filter Contacts...'
+          placeholder='Filter Exercises...'
           onChange={onChange}
         />
       </div>

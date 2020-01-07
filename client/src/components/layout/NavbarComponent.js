@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './NavbarComponent.css';
@@ -11,11 +11,55 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import AuthContext from '../../context/auth/authContext';
+import ExerciseContext from '../../context/exercise/exerciseContext';
 
 const NavbarComponent = ({ title, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const authContext = useContext(AuthContext);
+  const exerciseContext = useContext(ExerciseContext);
+
+  const { isAuthenticated, logout, user } = authContext;
+  const { clearExercises } = exerciseContext;
+
+  const onLogout = () => {
+    logout();
+    clearExercises();
+  };
+
+  const guestLinks = (
+    <Fragment>
+      <NavItem>
+        <NavLink tag={Link} to='/register'>
+          Register
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink tag={Link} to='/login'>
+          Login
+        </NavLink>
+      </NavItem>
+    </Fragment>
+  );
+
+  const authLinks = (
+    <Fragment>
+      <NavItem>
+        <NavLink tag={Link} to='#'>
+          Hello {user && user.name}
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink onClick={onLogout} tag={Link} to='#'>
+          <i className='fas fa-sign-out-alt'></i>
+          <span>Logout</span>
+        </NavLink>
+      </NavItem>
+    </Fragment>
+  );
 
   return (
     <div className='NavbarComponent'>
@@ -24,16 +68,7 @@ const NavbarComponent = ({ title, icon }) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='mr-auto' navbar>
-            <NavItem>
-              <NavLink tag={Link} to='/'>
-                Home
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to='/about'>
-                About
-              </NavLink>
-            </NavItem>
+            {isAuthenticated ? authLinks : guestLinks}
           </Nav>
         </Collapse>
       </Navbar>

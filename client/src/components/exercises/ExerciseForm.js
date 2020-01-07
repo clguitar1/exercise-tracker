@@ -45,12 +45,7 @@ const ExerciseForm = () => {
     } else {
       updateExercise(exercise);
     }
-    setExercise({
-      name: '',
-      sets: '',
-      reps: '',
-      duration: ''
-    });
+    clearAll();
   };
 
   const clearAll = () => {
@@ -101,7 +96,7 @@ const ExerciseForm = () => {
         />
       </FormGroup>
       <Button color='primary' type='submit' block>
-        {current ? 'Edit Exercise' : 'Add Exercise'}
+        {current ? 'Update Exercise' : 'Add Exercise'}
       </Button>
       {current && (
         <div>

@@ -8,10 +8,8 @@ import {
   Button,
   ButtonGroup,
   Card,
-  CardText,
   CardBody,
-  CardTitle,
-  CardSubtitle
+  CardTitle
 } from 'reactstrap';
 import ExerciseContext from '../../context/exercise/exerciseContext';
 
@@ -20,10 +18,10 @@ const ExerciseItem = ({ exercise }) => {
   const exerciseContext = useContext(ExerciseContext);
   const { deleteExercise, setCurrent, clearCurrent } = exerciseContext;
 
-  const { id, name, sets, reps, duration } = exercise;
+  const { _id, name, sets, reps, duration } = exercise;
 
   const onDelete = () => {
-    deleteExercise(id);
+    deleteExercise(_id);
     clearCurrent();
   };
 
