@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import AuthContext from '../../context/auth/authContext';
 import ExerciseContext from '../../context/exercise/exerciseContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const NavbarComponent = ({ title, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,13 +22,16 @@ const NavbarComponent = ({ title, icon }) => {
 
   const authContext = useContext(AuthContext);
   const exerciseContext = useContext(ExerciseContext);
+  const alertContext = useContext(AlertContext);
 
   const { isAuthenticated, logout, user } = authContext;
   const { clearExercises } = exerciseContext;
+  const { setAlert } = alertContext;
 
   const onLogout = () => {
     logout();
     clearExercises();
+    setAlert('Successfully logged out of your account', 'success');
   };
 
   const guestLinks = (

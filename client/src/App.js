@@ -26,7 +26,7 @@ const App = () => {
           <Router>
             <Fragment>
               <NavbarComponent />
-              <div className='App container'>
+              <div className='App container mt-4'>
                 <Alerts />
                 <Switch>
                   <PrivateRoute exact path='/' component={Home} />

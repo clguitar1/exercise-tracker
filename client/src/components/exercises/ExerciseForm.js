@@ -2,9 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import './ExerciseForm.css';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import ExerciseContext from '../../context/exercise/exerciseContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const ExerciseForm = () => {
+  const alertContext = useContext(AlertContext);
   const exerciseContext = useContext(ExerciseContext);
+
+  const { setAlert } = alertContext;
 
   const {
     addExercise,
@@ -12,6 +16,13 @@ const ExerciseForm = () => {
     current,
     updateExercise
   } = exerciseContext;
+
+  const [exercise, setExercise] = useState({
+    name: '',
+    sets: '',
+    reps: '',
+    duration: ''
+  });
 
   useEffect(() => {
     if (current !== null) {
@@ -26,24 +37,21 @@ const ExerciseForm = () => {
     }
   }, [exerciseContext, current]);
 
-  const [exercise, setExercise] = useState({
-    name: '',
-    sets: '',
-    reps: '',
-    duration: ''
-  });
-
   const { name, sets, reps, duration } = exercise;
 
+  // set state with input data
   const onChange = e =>
     setExercise({ ...exercise, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
+    // if current is null, run addExercise
     if (current === null) {
       addExercise(exercise);
+      setAlert('Exercise Added!', 'success');
     } else {
       updateExercise(exercise);
+      setAlert('Exercise Updated!', 'success');
     }
     clearAll();
   };

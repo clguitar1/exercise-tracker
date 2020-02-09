@@ -9,20 +9,30 @@ import {
   ButtonGroup,
   Card,
   CardBody,
-  CardTitle
+  CardTitle,
+  Table
 } from 'reactstrap';
 import ExerciseContext from '../../context/exercise/exerciseContext';
+import AlertContext from '../../context/alert/alertContext';
 
 // destructure exercise from exercises since each one is given the prop name 'exercise' when they are created in ExerciseForm.js with onSubmit -> addExercise(exercise)
 const ExerciseItem = ({ exercise }) => {
   const exerciseContext = useContext(ExerciseContext);
+  const alertContext = useContext(AlertContext);
+
   const { deleteExercise, setCurrent, clearCurrent } = exerciseContext;
+  const { setAlert } = alertContext;
 
   const { _id, name, sets, reps, duration } = exercise;
+
+  const onEdit = () => {
+    setCurrent(exercise);
+  };
 
   const onDelete = () => {
     deleteExercise(_id);
     clearCurrent();
+    setAlert('Exercise deleted', 'danger');
   };
 
   return (
@@ -44,7 +54,7 @@ const ExerciseItem = ({ exercise }) => {
         </ListGroup>
         <CardBody>
           <ButtonGroup>
-            <Button color='dark' onClick={() => setCurrent(exercise)}>
+            <Button color='dark' onClick={onEdit}>
               Edit
             </Button>
             <Button color='danger' onClick={onDelete}>

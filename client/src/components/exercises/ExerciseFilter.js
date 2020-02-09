@@ -21,7 +21,7 @@ const ExerciseFilter = () => {
   };
 
   return (
-    <form>
+    <form className='pt-4'>
       <div className='form-group'>
         <input
           className='form-control'
